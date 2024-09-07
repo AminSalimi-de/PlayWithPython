@@ -34,7 +34,38 @@ class Employee:
         if day.weekday()==5 or day.weekday()==6:
             return False
         return True        
+
+
+class Developer(Employee):
+    raise_coeff = 1.10
     
+    def __init__(self, first, last, pay, prog_lang):
+        super().__init__(first, last, pay)
+        self.prog_lang = prog_lang
+
+
+class Manager(Employee):
+    
+    def __init__(self, first, last, pay, employees=None):
+        super().__init__(first, last, pay)
+        if employees==None:
+            self.employees = []
+        else:
+            self.employees = employees
+        
+    def add_employee(self, emp)    :
+        if emp not in self.employees:
+            self.employees.append(emp)
+    
+    def remove_employee(self, emp):
+        if emp in self.employees:
+            self.employees.remove(emp)
+    
+    def print_employees(self):
+        for emp in self.employees:
+            print('-->', emp.fullName())
+
+
 emp1 = Employee("Amin", "Salimi", 50000)
 emp2 = Employee("Taghi", "Tsghizadeh", 60000)
 emp3_str = "Naghi-Naghizadeh-70000"
@@ -48,8 +79,17 @@ emp1.print()
 emp2.print()
 emp3.print()
 
+dev1 = Developer("Ozra", "Fahimi", 40000, "Python")
+
+mngr1 = Manager("Omid", "Razegi", 100000, [dev1])
+mngr1.add_employee(emp1)
+mngr1.add_employee(emp2)
+mngr1.remove_employee(dev1)
+
 print()
 print(Employee.is_work_day(datetime.date(2024, 9, 7)))
 print(Employee.raise_coeff)
 print(Employee.num_of_employees)
-
+print(dev1.email)
+print(mngr1.fullName())
+mngr1.print_employees()
