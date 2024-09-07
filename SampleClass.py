@@ -1,3 +1,4 @@
+import datetime
 
 class Employee:
     num_of_employees = 0
@@ -28,6 +29,12 @@ class Employee:
         first, last, pay = empl_str.split("-")
         return cls(first, last, pay)
     
+    @staticmethod
+    def is_work_day(day):
+        if day.weekday()==5 or day.weekday()==6:
+            return False
+        return True        
+    
 emp1 = Employee("Amin", "Salimi", 50000)
 emp2 = Employee("Taghi", "Tsghizadeh", 60000)
 emp3_str = "Naghi-Naghizadeh-70000"
@@ -42,5 +49,7 @@ emp2.print()
 emp3.print()
 
 print()
+print(Employee.is_work_day(datetime.date(2024, 9, 7)))
 print(Employee.raise_coeff)
 print(Employee.num_of_employees)
+
