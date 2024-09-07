@@ -23,8 +23,15 @@ class Employee:
         print(f"pay={self.pay}")
         print()
         
+    @classmethod
+    def from_string(cls, empl_str):
+        first, last, pay = empl_str.split("-")
+        return cls(first, last, pay)
+    
 emp1 = Employee("Amin", "Salimi", 50000)
 emp2 = Employee("Taghi", "Tsghizadeh", 60000)
+emp3_str = "Naghi-Naghizadeh-70000"
+emp3 = Employee.from_string(emp3_str)
 
 emp1.raise_coeff = 1.05
 
@@ -32,6 +39,8 @@ emp1.appply_raise()
 
 emp1.print()
 emp2.print()
+emp3.print()
 
+print()
 print(Employee.raise_coeff)
 print(Employee.num_of_employees)
