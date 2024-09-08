@@ -35,6 +35,11 @@ class Employee:
             return False
         return True        
 
+    def __repr__(self):
+        return f"Employee({self.first}, {self.last}, {self.pay})"
+
+    def __str__(self) -> str:
+        return f"Name={self.fullName()} - email={self.email}" 
 
 class Developer(Employee):
     raise_coeff = 1.10
@@ -96,3 +101,5 @@ mngr1.print_employees()
 #print(help(Manager))
 print(isinstance(mngr1, Manager))
 print(issubclass(Manager, Employee))
+
+print(emp1)
