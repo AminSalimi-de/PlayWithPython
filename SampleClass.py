@@ -14,14 +14,21 @@ class Employee:
     def email(self):
         return f"{self.first}.{self.last}@company.com"
 
-    def fullName(self):
+    @property
+    def fullname(self):
         return f"{self.first} {self.last}"
+    
+    @fullname.setter
+    def fullname(self, name):
+        first, last = name.split(' ')
+        self.first = first
+        self.last = last
 
     def appply_raise(self):
         self.pay *= self.raise_coeff
         
     def print(self):
-        print(f"Name={self.fullName()}")
+        print(f"Name={self.fullname}")
         print(f"email={self.email}")
         print(f"raise_coeff={self.raise_coeff}")
         print(f"pay={self.pay}")
@@ -42,13 +49,13 @@ class Employee:
         return f"Employee({self.first}, {self.last}, {self.pay})"
 
     def __str__(self) -> str:
-        return f"Name={self.fullName()} - email={self.email}" 
+        return f"Name={self.fullname} - email={self.email}" 
 
     def __add__(self, other):
         return self.pay + other.pay
 
     def __len__(self):
-        return len(self.fullName())
+        return len(self.fullname)
 
 class Developer(Employee):
     raise_coeff = 1.10
@@ -77,7 +84,7 @@ class Manager(Employee):
     
     def print_employees(self):
         for emp in self.employees:
-            print('-->', emp.fullName())
+            print('-->', emp.fullname)
 
 
 emp1 = Employee("Amin", "Salimi", 50000)
@@ -104,7 +111,7 @@ print(Employee.is_work_day(datetime.date(2024, 9, 7)))
 print(Employee.raise_coeff)
 print(Employee.num_of_employees)
 print(dev1.email)
-print(mngr1.fullName())
+print(mngr1.fullname)
 mngr1.print_employees()
 #print(help(Manager))
 print(isinstance(mngr1, Manager))
@@ -115,4 +122,7 @@ print(emp1+emp2)
 print(len(emp1))
 
 emp1.first = "Amir"
+print(emp1)
+
+emp1.fullname = "Jaber Hayyan"
 print(emp1)
