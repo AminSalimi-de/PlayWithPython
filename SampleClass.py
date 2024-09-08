@@ -41,6 +41,12 @@ class Employee:
     def __str__(self) -> str:
         return f"Name={self.fullName()} - email={self.email}" 
 
+    def __add__(self, other):
+        return self.pay + other.pay
+
+    def __len__(self):
+        return len(self.fullName())
+
 class Developer(Employee):
     raise_coeff = 1.10
     
@@ -77,7 +83,6 @@ emp3_str = "Naghi-Naghizadeh-70000"
 emp3 = Employee.from_string(emp3_str)
 
 emp1.raise_coeff = 1.05
-
 emp1.appply_raise()
 
 emp1.print()
@@ -103,3 +108,5 @@ print(isinstance(mngr1, Manager))
 print(issubclass(Manager, Employee))
 
 print(emp1)
+print(emp1+emp2)
+print(len(emp1))
