@@ -24,6 +24,12 @@ class Employee:
         self.first = first
         self.last = last
 
+    @fullname.deleter
+    def fullname(self):
+        print("Deleting fullname!")
+        self.first = None
+        self.last = None
+
     def appply_raise(self):
         self.pay *= self.raise_coeff
         
@@ -56,7 +62,7 @@ class Employee:
 
     def __len__(self):
         return len(self.fullname)
-
+    
 class Developer(Employee):
     raise_coeff = 1.10
     
@@ -125,4 +131,7 @@ emp1.first = "Amir"
 print(emp1)
 
 emp1.fullname = "Jaber Hayyan"
+print(emp1)
+
+del emp1.fullname
 print(emp1)
