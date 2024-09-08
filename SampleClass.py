@@ -7,10 +7,13 @@ class Employee:
     def __init__(self, first, last, pay):
         self.first = first
         self.last = last
-        self.email = f"{first}.{last}@company.com"
         self.pay = pay
         Employee.num_of_employees += 1
-           
+
+    @property
+    def email(self):
+        return f"{self.first}.{self.last}@company.com"
+
     def fullName(self):
         return f"{self.first} {self.last}"
 
@@ -110,3 +113,6 @@ print(issubclass(Manager, Employee))
 print(emp1)
 print(emp1+emp2)
 print(len(emp1))
+
+emp1.first = "Amir"
+print(emp1)
